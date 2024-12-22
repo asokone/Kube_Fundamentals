@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod-03
+  labels:
+    role: mypod-03-role
+spec:
+  containers:
+    - name: mypod-03-web
+      image: nginx:1.14.2
+      ports:
+        - name: mypod-03-web
+          containerPort: 80
+          protocol: TCP

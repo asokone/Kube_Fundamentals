@@ -1,0 +1,18 @@
+#apiVersion: networking.k8s.io/v1beta1/ingress
+#apiVersion: networking.k8s.io/v1beta1
+#apiVersion: networking.k8s.io/v1beta
+#apiVersion: networking.k8s.io/v1
+# All the above apiVersion didn’t work, I find a fix: https://github.com/kubernetes/website/issues/14322
+#
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-nginx-deploy
+spec:
+  rules:
+  - host: nginx.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: nginx-deploy
+          servicePort: 80

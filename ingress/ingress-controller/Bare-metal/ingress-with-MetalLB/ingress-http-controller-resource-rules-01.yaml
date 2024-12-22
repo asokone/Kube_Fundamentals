@@ -1,0 +1,18 @@
+#apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-httpd-resource-01
+  namespace: ingress-nginx
+spec:
+  rules:
+  - host: httpd.example.com
+# Define here a host base routing
+# any request to access httpd.example.com
+# will be routed to the service: main-deployment-01-httpd
+# below.
+    http:
+      paths:
+        - backend:
+            serviceName: main-deployment-01-httpd
+            servicePort: 80 

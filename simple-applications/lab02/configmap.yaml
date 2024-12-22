@@ -1,0 +1,16 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses: 
+      - 192.168.0.241-192.168.0.250
+# We are using on premises for the cluster the 192.168.0.X network
+# Use [kubectl get nodes –o wide ] the query your cluster IPs
+# I am using this set of IPs: 192.168.0.220-192.168.0.250

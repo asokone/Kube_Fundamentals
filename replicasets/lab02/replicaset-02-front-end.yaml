@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset-02-rss-site
+  labels:
+    app: replicaset-02-web
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: replicaset-02-web
+  template:
+    metadata:
+      labels:
+        app: replicaset-02-web
+    spec:
+      containers:
+        - name: replicaset-02-front-end-container
+          image: nginx
+          ports:
+            - containerPort: 80
+        - name: replicaset-02-rss-reader-container
+          image: nickchase/rss-php-nginx:v1
+          ports:
+            - containerPort: 88

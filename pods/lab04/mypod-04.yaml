@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod-04
+
+  namespace: mypods-namespace
+spec:
+  volumes:
+  - name: mypod-04-volume
+    emptyDir: {}
+  containers:
+  - name: mypod-04-webcontainer
+    image: nginx
+    volumeMounts:
+    - name: mypod-04-volume
+      mountPath: /usr/share/nginx/html
+
+  - name: mypod-04-filecontainer
+    image: debian
+    volumeMounts:
+    - name: mypod-04-volume
+      mountPath: /html
+    command: ["/bin/sh", "-c"]
+    args:
+       - while true; do
+          echo "Welcome on `date` to my Website" >> /html/index.html;
+          sleep 30;
+         done

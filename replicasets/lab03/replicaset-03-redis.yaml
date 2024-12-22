@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset-03-php-redis
+  labels:
+    app: replicaset-03-guestbook
+    tier: replicaset-03-php-redis
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: replicaset-03-php-redis
+  template:
+    metadata:
+      labels:
+        tier: replicaset-03-php-redis
+    spec:
+      containers:
+      - name: replicaset-03-php-redis-container
+        image: gcr.io/google_samples/gb-frontend:v3

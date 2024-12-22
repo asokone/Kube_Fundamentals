@@ -1,0 +1,370 @@
+    3  kubectl describe svc/kubernetes-dashboard -n kube-system -yaml
+    4  kubectl describe svc/kubernetes-dashboard -n kube-system 
+   14  kubectl apply -f dashboard-adminuser.yaml
+   15  kubectl apply -f dashboard-adminuser-ClusterRoleBinding.yaml
+   22  kubectl get all -n kube-system | more
+   23  kubectl logs -f pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+   24  kubectl get all -n kube-system | more
+   25  kubectl logs -f deployment.apps/kubernetes-dashboard -n kube-system
+   26  kubectl get all -n kube-system | more
+   31  kubectl get all -n kube-system | more
+   34  kubectl apply -f dashboard-ingress.yaml
+   37  kubectl apply -f dashboard-ingress.yaml
+   39  kubectl get all -n kube-system | grep "^service/kubernetes"
+   40  kubectl apply -f dashboard-ingress.yaml
+   44  kubectl get pods -n kube-system                 
+   45  kubectl get pods -n kube-system | grep dashboard
+   46  kubectl describe pod kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system | more
+   47  kubectl describe pod kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system | egrep "^Name:|^Namespace:|^IP:|Port:|Host Port:"
+   58  kubectl -n kube-system get secret $(kubectl -n kube-system get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+   59  kubectl get pods --all-namespaces -l app=ingress-nginx
+   76  kubectl get pods -n kube-system
+   82  kubectl get pods -n kube-system
+   84  kubectl get all -n kube-system
+   85  kubectl get all -n kube-system | more
+   86  kubectl logs -f pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+   87  kubectl get all -n kube-system | more
+   88  kubectl get all -n kube-system 
+   89  kubectl describe pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+   90  kubectl describe pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system  | more
+   91  kubectl describe svc/kubernetes-dashboard -n kube-system
+   92  kubectl describe svc/kubernetes-dashboard -n kube-system -yaml
+   93  kubectl describe svc/kubernetes-dashboard -n kube-system 
+  103  kubectl apply -f dashboard-adminuser.yaml
+  104  kubectl apply -f dashboard-adminuser-ClusterRoleBinding.yaml
+  111  kubectl get all -n kube-system | more
+  112  kubectl logs -f pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+  113  kubectl get all -n kube-system | more
+  114  kubectl logs -f deployment.apps/kubernetes-dashboard -n kube-system
+  115  kubectl get all -n kube-system | more
+  120  kubectl get all -n kube-system | more
+  123  kubectl apply -f dashboard-ingress.yaml
+  126  kubectl apply -f dashboard-ingress.yaml
+  128  kubectl get all -n kube-system | grep "^service/kubernetes"
+  129  kubectl apply -f dashboard-ingress.yaml
+  133  kubectl get pods -n kube-system                 
+  134  kubectl get pods -n kube-system | grep dashboard
+  135  kubectl describe pod kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system | more
+  136  kubectl describe pod kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system | egrep "^Name:|^Namespace:|^IP:|Port:|Host Port:"
+  147  kubectl -n kube-system get secret $(kubectl -n kube-system get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+  148  kubectl get pods --all-namespaces -l app=ingress-nginx
+  165  kubectl get pods -n kube-system
+  171  kubectl get pods -n kube-system
+  174  kubectl get all -n kube-system
+  175  kubectl get all -n kube-system | more
+  176  kubectl logs -f pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+  177  kubectl get all -n kube-system | more
+  178  kubectl get all -n kube-system 
+  179  kubectl describe pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+  180  kubectl describe pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system  | more
+  181  kubectl describe svc/kubernetes-dashboard -n kube-system
+  182  kubectl describe svc/kubernetes-dashboard -n kube-system -yaml
+  183  kubectl describe svc/kubernetes-dashboard -n kube-system 
+  193  kubectl apply -f dashboard-adminuser.yaml
+  194  kubectl apply -f dashboard-adminuser-ClusterRoleBinding.yaml
+  201  kubectl get all -n kube-system | more
+  202  kubectl logs -f pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+  203  kubectl get all -n kube-system | more
+  204  kubectl logs -f deployment.apps/kubernetes-dashboard -n kube-system
+  205  kubectl get all -n kube-system | more
+  210  kubectl get all -n kube-system | more
+  213  kubectl apply -f dashboard-ingress.yaml
+  216  kubectl apply -f dashboard-ingress.yaml
+  218  kubectl get all -n kube-system | grep "^service/kubernetes"
+  219  kubectl apply -f dashboard-ingress.yaml
+  223  kubectl get pods -n kube-system                 
+  224  kubectl get pods -n kube-system | grep dashboard
+  225  kubectl describe pod kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system | more
+  226  kubectl describe pod kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system | egrep "^Name:|^Namespace:|^IP:|Port:|Host Port:"
+  237  kubectl -n kube-system get secret $(kubectl -n kube-system get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+  238  kubectl get pods --all-namespaces -l app=ingress-nginx
+  255  kubectl get pods -n kube-system
+  261  kubectl get pods -n kube-system
+  265  kubectl get all -n kube-system
+  266  kubectl get all -n kube-system | more
+  267  kubectl logs -f pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+  268  kubectl get all -n kube-system | more
+  269  kubectl get all -n kube-system 
+  270  kubectl describe pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+  271  kubectl describe pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system  | more
+  272  kubectl describe svc/kubernetes-dashboard -n kube-system
+  273  kubectl describe svc/kubernetes-dashboard -n kube-system -yaml
+  274  kubectl describe svc/kubernetes-dashboard -n kube-system 
+  284  kubectl apply -f dashboard-adminuser.yaml
+  285  kubectl apply -f dashboard-adminuser-ClusterRoleBinding.yaml
+  292  kubectl get all -n kube-system | more
+  293  kubectl logs -f pod/kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system
+  294  kubectl get all -n kube-system | more
+  295  kubectl logs -f deployment.apps/kubernetes-dashboard -n kube-system
+  296  kubectl get all -n kube-system | more
+  301  kubectl get all -n kube-system | more
+  304  kubectl apply -f dashboard-ingress.yaml
+  307  kubectl apply -f dashboard-ingress.yaml
+  309  kubectl get all -n kube-system | grep "^service/kubernetes"
+  310  kubectl apply -f dashboard-ingress.yaml
+  314  kubectl get pods -n kube-system                 
+  315  kubectl get pods -n kube-system | grep dashboard
+  316  kubectl describe pod kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system | more
+  317  kubectl describe pod kubernetes-dashboard-d9ccf957f-rmpsr -n kube-system | egrep "^Name:|^Namespace:|^IP:|Port:|Host Port:"
+  328  kubectl -n kube-system get secret $(kubectl -n kube-system get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+  329  kubectl get pods --all-namespaces -l app=ingress-nginx
+  346  kubectl get pods -n kube-system
+  352  kubectl get pods -n kube-system
+  357  kubectl get pods --all-namespaces -o wide
+  358  kubectl get --all-namespaces
+  359  kubectl get ns
+  360  kubectl get pods -n kube-public
+  361  kubectl get pods -n default
+  377  kubectl apply -f apple.yaml
+  378  kubectl apply -f banana.yaml 
+  379  kubectl get pods --all-namespaces -o wide
+  380  kubectl get pods --all-namespaces
+  381  kubectl get pods -n kube-system
+  385   kubectl get pod -n kube-system
+  386  kubectl get all -n kube-system
+  387  kubectl get all -n kube-system | more 
+  389  kubectl get all -n kube-system 
+  392  kubectl get all -n kube-system  | grep ingress
+  403  kubectl apply -f apple-banana-ingress-rule.yaml
+  404  kubectl delete -f apple.yaml
+  405  kubectl delete -f banana.yaml 
+  408  kubectl create -f apple.yaml
+  409  kubectl create -f banana.yaml 
+  410  kubectl get all -n kube-system 
+  411  kubectl get all -n kube-system | more
+  412  kubectl get pods
+  413  kubectl get all -n default | more
+  414  kubectl apply -f apple-banana-ingress-rule.yaml
+  415  kubectl get -A ValidatingWebhookConfiguration
+  416  kubectl get  ValidatingWebhookConfiguration
+  417  kubectl get svc -n ingress-nginx
+  418  kubectl get svc -n kube-system
+  419  kubectl get  ValidatingWebhookConfiguration
+  420  kubectl get svc -n kube-system
+  421  kubectl get all -n kube-system | more
+  422  kubectl get all -n kube-system | grep admission
+  423  kubectl apply -f apple-banana-ingress-rule.yaml
+  426  kubectl delete -f 
+  429  kubectl get all -n kube-system
+  431  kubectl apply deploy_nginx_ingress_controller_namespace_ingress-nginx.yaml
+  432  kubectl apply -f deploy_nginx_ingress_controller_namespace_ingress-nginx.yaml
+  433  kubectl apply -f deploy_nginx_ingress_controller_namespace_ingress-nginx.yaml --validate=false
+  440  kubectl get all 
+  442  kubectl delete -f apple.yaml ; kubectl delete -f banana.yaml
+  444  kubectl get all -n ingress-nginx
+  445  kubectl apply -f apple.yaml ; kubectl apply -f banana.yaml
+  446  kubectl apply -f apple-banana-ingress-rule.yaml
+  453  kubectl get ingress 
+  468  kubectl get --all-namespace
+  469  kubectl get namespace
+  470  kubectl describe -n ingress-nginx
+  471  kubectl describe  ns/ingress-nginx
+  472  kubectl get all -n ingress-nginx
+  473  kubectl get pod
+  474  kubectl exec -it pod apple-app -- ls
+  475  kubectl exec -it  apple-app -- ls
+  476  kubectl exec --stdin --tty  apple-app -- ls
+  477  kubectl exec --stdin --tty  apple-app -- curl http://localhost/
+  478  kubectl exec --stdin --tty  apple-app -- curl http://localhost/apple
+  479  kubectl exec --stdin --tty  apple-app -- bash
+  480  kubectl get pods --all-namespaces -l app=ingress-nginx
+  481  kubectl get pods --all-namespaces | grep ingress-nginx
+  483  kubectl get pods --all-namespaces 
+  486  kubectl get pods
+  487  kubectl get pods --all-namespaces 
+  488  kubectl get all 
+  493  kubectl describe service/apple-service
+  494  kubectl describe service/apple-banana
+  495  kubectl describe service/apple-service
+  496  kubectl describe service/banana-service
+  498  kubectl get ingress
+  501  kubectl describe ingress example-ingress
+  502  kubectl get all 
+  503  kubectl get all -n kube-system
+  505  kubectl get all -n kube-system | more
+  506  kubectl get all -n kube-system | grep ingress
+  507  kubectl get ns
+  508  kubectl describe ns/ingress-nginx
+  517  kubectl delete -f deploy_nginx_ingress_controller_namespace_ingress-nginx.yaml
+  522  kubectl apply -f deploy_nginx_ingress_controller_namespace_default.yaml
+  523  kubectl apply -f deploy_nginx_ingress_controller_namespace_default.yaml --validate=false
+  524  kubectl get all -n ingress-nginx
+  525  kubectl get all -n default
+  530  kubectl get all -n default
+  544  kubectl apply -f apple.yaml
+  545  kubectl apply -f banana.yaml
+  555  kubectl get all
+  556  kubectl get pods
+  562  kubectl describe service/apple-service
+  563  kubectl describe service/banana-service
+  564  kubectl apply -f apple-banana-ingress-rule.yaml
+  566  kubectl apply -f apple-banana-ingress-rule.yaml
+  568  kubectl apply -f apple-banana-ingress-rule.yaml
+  576  kubectl delete -f apple.yaml; kubectl delete -f banana.yaml; kubectl delete -f notworking/deploy_nginx_ingress_controller_namespace_default.yaml
+  580  kubectl apply -f deploy_nginx_ingress_controller_namespace_ingress-nginx.yaml
+  581  kubectl apply -f deploy_nginx_ingress_controller_namespace_ingress-nginx.yaml --validate=false
+  582  kubectl get all -n ingress-nginx
+  594  kubectl apply -f apple.yaml
+  595  kubectl apply -f banana.yaml
+  596  kubectl get all
+  597  kubectl get all -n ingress-nginx
+  604  kubectl describe service/apple-service
+  605  kubectl get all -n ingress-nginx
+  606  kubectl describe service/apple-service -n ingress-nginx
+  607  kubectl describe service/banana-service -n ingress-nginx
+  612  kubectl apply -f apple-banana-ingress-rule.yaml
+  613  kubectl get ingress
+  614  kubectl get ingress -n ingress-nginx
+  626  kubectl get ingress -n ingress-nginx
+  627  kubectl pod  -n ingress-nginx
+  628  kubectl get pod  -n ingress-nginx
+  629  kubectl logs -f pod/ingress-nginx-controller-5d5d56d7d7-qskcd
+  630  kubectl logs -f pod ingress-nginx-controller-5d5d56d7d7-qskcd
+  631  kubectl logs -f ingress-nginx-controller-5d5d56d7d7-qskcd
+  632  kubectl logs pod -f ingress-nginx-controller-5d5d56d7d7-qskcd
+  633  kubectl logs -f ingress-nginx-controller-5d5d56d7d7-qskcd
+  634  kubectl pod logs -f ingress-nginx-controller-5d5d56d7d7-qskcd
+  635  kubectl logs ingress-nginx-controller-5d5d56d7d7-qskcd
+  636  kubectl logs pod/ingress-nginx-controller-5d5d56d7d7-qskcd
+  637  kubectl logs pod/ingress-nginx-controller-5d5d56d7d7-qskcd -n ingress-nginx
+  638  kubectl logs -f pod/ingress-nginx-controller-5d5d56d7d7-qskcd -n ingress-nginx
+  640  kubectl logs -f pod/ingress-nginx-controller-5d5d56d7d7-qskcd -n ingress-nginx
+  653  kubectl get ingress
+  654  kubectl get ingress -n ingress-nginx
+  661  kubectl describe ingress example-ingress -n ingress-ginx
+  662  kubectl describe ingress example-ingress -n ingress-nginx
+  680  kubectl version
+  681  kubectl get pods --all-namespaces -o wide 
+  683  kubectl get pods --all-namespaces -o wide 
+  690  kubectl delete -f apple.yaml; kubectl delete -f banana.yaml
+  691  kubectl get pods --all-namespaces -o wide 
+  699  kubectl apply -f deployment-apple.yaml
+  709  kubectl apply -f deployment-apple.yaml
+  714  kubectl get pods --all-namespaces -o wide 
+  715  kubectl get namespace
+  716  kubectl describe namespace ingress-nginx
+  718  kubectl apply deployment-apple.yaml
+  720  kubectl apply -f deployment-apple.yaml
+  721  kubectl apply -f deployment-banana.yaml 
+  722  kubectl get pods 
+  723  kubectl get pods -n ingress-nginx
+  724  kubectl desribe pod apple-app-6f6f97488-c2z4c
+  725  kubectl describe pod apple-app-6f6f97488-c2z4c
+  726  kubectl describe pod apple-app-6f6f97488-c2z4c -n ingress-nginx
+  727  kubectl get pods -n ingress-nginx
+  728  kubectl describe pod banana-app-dd9bd49c9-sw95g -n ingress-nginx
+  729  kubectl get pods -n ingress-nginx
+  730  kubectl describe pod apple-app-6f6f97488-c2z4c -n ingress-nginx | grep "IP|Port"
+  731  kubectl describe pod apple-app-6f6f97488-c2z4c -n ingress-nginx | egrep "IP|Port"
+  732  kubectl describe service -n ingress-nginx 
+  733  kubectl get service
+  734  kubectl get service -n ingress-nginx
+  735  kubectl describe service apple-service -n ingress-nginx
+  736  kubectl describe service banana-service -n ingress-nginx
+  737  kubectl describe service apple-service -n ingress-nginx | grep Endpoint
+  738  kubectl describe service banana-service -n ingress-nginx | grep Endpoint
+  745  kubectl get ingress -n ingress-nginx
+  747  kubectl delete -f apple-banana-ingress-rule.yaml
+  748  kubectl get ingress -n ingress-nginx
+  749  kubectl apply -f apple-banana-ingress-rule.yaml
+  750  kubectl get ingress -n ingress-nginx
+  753  kubectl get ingress -n ingress-nginx
+  754  kubectl get service -n ingress-nginx
+  757  kubectl get pod -n ingress-nginx
+  758  kubectl get service -n ingress-nginx
+  759  kubectl get ingress -n ingress-nginx
+  760  kubectl describe ingress -n ingress-nginx
+  766  kubectl get ingress -n ingress-nginx
+  767  kubectl logs -f ingress -n ingress-nginx
+  768  kubectl get pod -n ingress-nginx
+  769  kubectl logs -f ingress-nginx-controller-5d5d56d7d7-qskcd -n ingress-nginx
+  771  kubectl get pod -n ingress-nginx
+  774  kubectl describe ingress -n ingress-nginx
+  778  kubectl describe ingress -n ingress-nginx
+  779  kubectl describe namespace ingress-nginx
+  780  kubectl logs -f ingress-nginx-controller-5d5d56d7d7-qskcd -n ingress-nginx
+  783  history | grep kubectl apply
+  798  kubectl apply -f my-first-service-load-balancer-example.yaml
+  799  kubectl get deployments hello-world
+  800  kubectl describe deployments hello-world
+  801  kubectl get replicasets
+  802  kubectl describe replicasets
+  803  kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
+  804  kubectl get services my-service
+  805  kubectl get services my-service --watch
+  806  kubectl delete -f my-first-service-load-balancer-example.yaml
+  807  kubectl delete services my-service
+  808  kubectl delete deployment hello-world
+  809  kubectl get services my-service --watch
+  810  kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
+  824  echo kubectl expose deployment hello-world --type=LoadBalancer --name=my-service
+  826  kubectl affply -f app1-deploy-svc.yaml
+  827  kubectl apply -f app1-deploy-svc.yaml
+  829  kubectl apply -f app-namespace.yaml
+  830  kubectl apply -f app1-deploy-svc.yaml
+  831  kubectl apply -f app2-deploy-svc.yaml 
+  832  kubectl get services
+  833  kubectl get services -n app
+  839  kubectl delete -f app2-deploy-svc.yaml 
+  840  kubectl delete -f app1-deploy-svc.yaml 
+  841  kubectl delete -f app-namespace.yaml
+  844  kubectl version --short
+  845  kubectl get nodes
+  846  kubectl get nodes -o wide
+  848  kubectl run nginx --image nginx
+  849  kubectl get all
+  850  kubectl get all | grep "pod/nginx"
+  852  kubectl expose deploy nginx --port 80 --type LoadBalancer; watch kubectl get all
+  853  kubectl get service
+  856  kubectl delete svc nginx
+  857  kubectl get service
+  861  kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/namespace.yaml
+  862  kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+  864  kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+  865  kubectl get ns
+  866  kubectl get all -n metallb-system
+  870  kubectl get all -n metallb-system
+  871  kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/namespace.yaml
+  872  kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+  873  kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+  874  kubectl get namespace
+  879  kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+  881  kubectl apply -f namespace.yaml
+  882  kubectl apply -f metallb.yaml
+  883  kubectl get all -n metallb-system
+  885  kubectl get ns
+  887  kubectl delete -f metallb.yaml
+  888  kubectl delete -f namespace.yaml
+  895  kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml
+  896  kubectl get all -n metallb-system
+  908  kubectl get ns
+  909  kubectl get all -n metallb-system
+  926  kubectl get nodes -o wide
+  933  kubectl apply -f configmap.yaml 
+  935  kubectl describe configmap config -n metallb-system
+  938  kubectl expose nginx --port 80 --type LoadBalancer
+  940  kubectl expose deploy nginx --port 80 --type LoadBalancer; watch kubectl get all
+  941  kubectl get services -n metallb-system
+  942  kubectl get services 
+  952  kubectl get all
+  954  kubectl run nginx2 --image nginx
+  955  kubectl get all
+  956  kubectl get all | nginx2
+  957  kubectl get all | grep nginx2
+  960  kubectl expose deploy nginx2 --port 80 --type LoadBalancer
+  961  kubectl get all | grep nginx2
+  962  kubectl get all 
+  963  kubectl get all | grep nginx2  | grep LoadBalancer
+  982  kubectl create secret tls my-tls-secret --key ca.key --cert ca.crt
+  983  kubectl deletle secret tls my-tls-secret --key ca.key --cert ca.crt
+  984  kubectl delete secret tls my-tls-secret --key ca.key --cert ca.crt
+  986  kubectl create secret tls nginx-example-com-secret-tls --key ca.key --cert ca.crt
+  989  kubectl get secrets/nginx-example-com-secret-tls
+  990  kubectl describe secrets/nginx-example-com-secret-tls
+  992  kubectl apply -f tls-secret-config.yaml
+  997  kubectl describe pod web-0 | more
+  998  kubectl describe pod web-0 --template
+  999  kubectl describe pod web-0 --help
+ 1000  kubectl describe pod web-0 -f pod.json
+ 1001  kubectl describe pod  -f web-0.json
+ 1002  history | grep kubectl > ~/kubectl_commands_history.txt

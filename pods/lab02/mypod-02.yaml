@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod-02
+spec:
+  containers:
+  - name: mypod-02-hello
+    image: busybox
+    command: ['sh', '-c', 'echo "Hello, Kubernetes!" && sleep 120']
+  restartPolicy: OnFailure

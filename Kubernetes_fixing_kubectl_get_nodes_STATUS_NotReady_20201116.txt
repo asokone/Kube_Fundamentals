@@ -1,0 +1,136 @@
+[asokone@kubeadm01 kubernetes]$ kubectl get nodes
+NAME           STATUS     ROLES    AGE   VERSION
+kubeadm01      NotReady   master   22d   v1.12.10+1.0.15.el7
+kubeworker01   NotReady   <none>   22d   v1.12.10+1.0.15.el7
+kubeworker02   NotReady   <none>   22d   v1.12.10+1.0.15.el7
+[asokone@kubeadm01 kubernetes]$
+[asokone@kubeadm01 kubernetes]$
+[asokone@kubeadm01 kubernetes]$ grep kube /var/log/messages | tail -100
+
+
+Nov 16 23:11:17 kubeadm01 kubelet: E1116 23:11:17.753379     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:11:22 kubeadm01 kubelet: W1116 23:11:22.767032     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:11:22 kubeadm01 kubelet: W1116 23:11:22.767057     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:11:22 kubeadm01 kubelet: E1116 23:11:22.767162     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:11:23 kubeadm01 containerd: time="2020-11-16T23:11:23.304991243-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:743e6fc9d3916235a2a50e7cec591d0c15bff673d4a636ddf08ea6a5ad57e791,Pid:20155,ExitStatus:0,ExitedAt:2020-11-17 06:11:23.286145589 +0000 UTC,}"
+Nov 16 23:11:27 kubeadm01 kubelet: W1116 23:11:27.773418     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:11:27 kubeadm01 kubelet: W1116 23:11:27.773443     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:11:27 kubeadm01 kubelet: E1116 23:11:27.773619     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:11:32 kubeadm01 kubelet: W1116 23:11:32.779717     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:11:32 kubeadm01 kubelet: W1116 23:11:32.779732     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:11:32 kubeadm01 kubelet: E1116 23:11:32.779811     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:11:33 kubeadm01 containerd: time="2020-11-16T23:11:33.292059254-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:f2287c49e26a798abce3e71604231c86e6fe2d93765dbd00de432b7223c5d69b,Pid:20288,ExitStatus:0,ExitedAt:2020-11-17 06:11:33.266599974 +0000 UTC,}"
+Nov 16 23:11:37 kubeadm01 kubelet: W1116 23:11:37.793490     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:11:37 kubeadm01 kubelet: W1116 23:11:37.793504     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:11:37 kubeadm01 kubelet: E1116 23:11:37.793577     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:11:42 kubeadm01 kubelet: W1116 23:11:42.801142     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:11:42 kubeadm01 kubelet: W1116 23:11:42.801161     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:11:42 kubeadm01 kubelet: E1116 23:11:42.801303     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:11:43 kubeadm01 containerd: time="2020-11-16T23:11:43.294507837-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:24569d9757234da464d6561a76f154858760aedcb8e7dd99a45e53da2bda2a85,Pid:20402,ExitStatus:0,ExitedAt:2020-11-17 06:11:43.275122345 +0000 UTC,}"
+Nov 16 23:11:44 kubeadm01 dbus[849]: [system] Activating via systemd: service name='net.reactivated.Fprint' unit='fprintd.service'
+Nov 16 23:11:44 kubeadm01 systemd: Starting Fingerprint Authentication Daemon...
+Nov 16 23:11:44 kubeadm01 kernel: xfs filesystem being remounted at /tmp supports timestamps until 2038 (0x7fffffff)
+Nov 16 23:11:44 kubeadm01 kernel: xfs filesystem being remounted at /var/tmp supports timestamps until 2038 (0x7fffffff)
+Nov 16 23:11:45 kubeadm01 dbus[849]: [system] Successfully activated service 'net.reactivated.Fprint'
+Nov 16 23:11:45 kubeadm01 systemd: Started Fingerprint Authentication Daemon.
+Nov 16 23:11:47 kubeadm01 kubelet: W1116 23:11:47.814218     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:11:47 kubeadm01 kubelet: W1116 23:11:47.814232     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:11:47 kubeadm01 kubelet: E1116 23:11:47.814308     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:11:52 kubeadm01 kubelet: W1116 23:11:52.822810     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:11:52 kubeadm01 kubelet: W1116 23:11:52.822829     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:11:52 kubeadm01 kubelet: E1116 23:11:52.822911     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:11:53 kubeadm01 containerd: time="2020-11-16T23:11:53.294579246-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:5c3d241d27a425e70659db78377692f85906fc1f1241636745aaa662409b5308,Pid:20518,ExitStatus:0,ExitedAt:2020-11-17 06:11:53.275988855 +0000 UTC,}"
+Nov 16 23:11:55 kubeadm01 su: (to root) asokone on pts/0
+Nov 16 23:11:55 kubeadm01 dbus[849]: [system] Activating service name='org.freedesktop.problems' (using servicehelper)
+Nov 16 23:11:55 kubeadm01 dbus[849]: [system] Successfully activated service 'org.freedesktop.problems'
+Nov 16 23:11:57 kubeadm01 kubelet: W1116 23:11:57.829785     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:11:57 kubeadm01 kubelet: W1116 23:11:57.829800     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:11:57 kubeadm01 kubelet: E1116 23:11:57.829900     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:12:01 kubeadm01 kubelet: I1116 23:12:01.433887     924 reconciler.go:207] operationExecutor.VerifyControllerAttachedVolume started for volume "cni" (UniqueName: "kubernetes.io/host-path/ce4a4bb8-289b-11eb-8aa4-080027a26928-cni") pod "kube-flannel-ds-amd64-kvwfs" (UID: "ce4a4bb8-289b-11eb-8aa4-080027a26928")
+Nov 16 23:12:01 kubeadm01 kubelet: I1116 23:12:01.433932     924 reconciler.go:207] operationExecutor.VerifyControllerAttachedVolume started for volume "flannel-cfg" (UniqueName: "kubernetes.io/configmap/ce4a4bb8-289b-11eb-8aa4-080027a26928-flannel-cfg") pod "kube-flannel-ds-amd64-kvwfs" (UID: "ce4a4bb8-289b-11eb-8aa4-080027a26928")
+Nov 16 23:12:01 kubeadm01 kubelet: I1116 23:12:01.433952     924 reconciler.go:207] operationExecutor.VerifyControllerAttachedVolume started for volume "flannel-token-kwk5r" (UniqueName: "kubernetes.io/secret/ce4a4bb8-289b-11eb-8aa4-080027a26928-flannel-token-kwk5r") pod "kube-flannel-ds-amd64-kvwfs" (UID: "ce4a4bb8-289b-11eb-8aa4-080027a26928")
+Nov 16 23:12:01 kubeadm01 kubelet: I1116 23:12:01.433969     924 reconciler.go:207] operationExecutor.VerifyControllerAttachedVolume started for volume "run" (UniqueName: "kubernetes.io/host-path/ce4a4bb8-289b-11eb-8aa4-080027a26928-run") pod "kube-flannel-ds-amd64-kvwfs" (UID: "ce4a4bb8-289b-11eb-8aa4-080027a26928")
+Nov 16 23:12:01 kubeadm01 systemd: Started Kubernetes transient mount for /var/lib/kubelet/pods/ce4a4bb8-289b-11eb-8aa4-080027a26928/volumes/kubernetes.io~secret/flannel-token-kwk5r.
+Nov 16 23:12:01 kubeadm01 kubelet: W1116 23:12:01.812492     924 container.go:393] Failed to create summary reader for "/system.slice/run-20687.scope": none of the resources are being tracked.
+Nov 16 23:12:02 kubeadm01 containerd: time="2020-11-16T23:12:02.351966182-07:00" level=info msg="shim containerd-shim started" address="/containerd-shim/moby/1a70c2818deb8591c908f4ce7fa15b914c5734bc3e0dfd67594fba8de6508ab2/shim.sock" debug=false pid=20691
+Nov 16 23:12:02 kubeadm01 kubelet: W1116 23:12:02.840986     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:12:02 kubeadm01 kubelet: W1116 23:12:02.841005     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:12:02 kubeadm01 kubelet: E1116 23:12:02.842159     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 containerd: time="2020-11-16T23:12:03.322981878-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:91024028c243c543e35a7d5affcb1e8408fc7b0b93896b617058b19a772a2835,Pid:20762,ExitStatus:0,ExitedAt:2020-11-17 06:12:03.276058439 +0000 UTC,}"
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.978585     924 remote_runtime.go:119] StopPodSandbox "dc0f89baa38e057c1d6d5f317d3e1e0799d25feb83e5e691dc3b537ea81f9a4e" from runtime service failed: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "kubernetes-dashboard-d9ccf957f-qsbd8_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.978601     924 kuberuntime_gc.go:153] Failed to stop sandbox "dc0f89baa38e057c1d6d5f317d3e1e0799d25feb83e5e691dc3b537ea81f9a4e" before removing: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "kubernetes-dashboard-d9ccf957f-qsbd8_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.979789     924 remote_runtime.go:119] StopPodSandbox "6cde30a6344a024dec1c28a8dc61265fbd6938bd41db5b67922ebd097efcd9fc" from runtime service failed: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "kubernetes-dashboard-d9ccf957f-qsbd8_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.979800     924 kuberuntime_gc.go:153] Failed to stop sandbox "6cde30a6344a024dec1c28a8dc61265fbd6938bd41db5b67922ebd097efcd9fc" before removing: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "kubernetes-dashboard-d9ccf957f-qsbd8_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.980936     924 remote_runtime.go:119] StopPodSandbox "7b0b61a2154fa8ef019267cabd4f5bb4760e6dd107ef9a1c5e4663fec07e1fda" from runtime service failed: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "coredns-589b66d85f-58qb8_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.980960     924 kuberuntime_gc.go:153] Failed to stop sandbox "7b0b61a2154fa8ef019267cabd4f5bb4760e6dd107ef9a1c5e4663fec07e1fda" before removing: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "coredns-589b66d85f-58qb8_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.982073     924 remote_runtime.go:119] StopPodSandbox "1908b14fd66f71631b2b7fd39865218075bb8efa994290b4bf16081de855e45f" from runtime service failed: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "coredns-589b66d85f-58qb8_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.982087     924 kuberuntime_gc.go:153] Failed to stop sandbox "1908b14fd66f71631b2b7fd39865218075bb8efa994290b4bf16081de855e45f" before removing: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "coredns-589b66d85f-58qb8_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.983369     924 remote_runtime.go:119] StopPodSandbox "d1d40c45a41321792f22d334dbcba5c1b24d3d3c1bdbf975877affd4abdcd2f6" from runtime service failed: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "coredns-589b66d85f-j7s2m_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.983380     924 kuberuntime_gc.go:153] Failed to stop sandbox "d1d40c45a41321792f22d334dbcba5c1b24d3d3c1bdbf975877affd4abdcd2f6" before removing: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "coredns-589b66d85f-j7s2m_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.984640     924 remote_runtime.go:119] StopPodSandbox "d1822e6f13068e0b17e4ae404584d8a24458deb3d3e07e612889d80a22732f00" from runtime service failed: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "coredns-589b66d85f-j7s2m_kube-system" network: cni config uninitialized
+Nov 16 23:12:03 kubeadm01 kubelet: E1116 23:12:03.984651     924 kuberuntime_gc.go:153] Failed to stop sandbox "d1822e6f13068e0b17e4ae404584d8a24458deb3d3e07e612889d80a22732f00" before removing: rpc error: code = Unknown desc = NetworkPlugin cni failed to teardown pod "coredns-589b66d85f-j7s2m_kube-system" network: cni config uninitialized
+Nov 16 23:12:07 kubeadm01 kubelet: W1116 23:12:07.852325     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:12:07 kubeadm01 kubelet: W1116 23:12:07.852343     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:12:07 kubeadm01 kubelet: E1116 23:12:07.852483     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:12:12 kubeadm01 kubelet: W1116 23:12:12.857606     924 cni.go:134] Error loading CNI config list file /etc/cni/net.d/10-flannel.conflist: error parsing configuration list: no 'plugins' key
+Nov 16 23:12:12 kubeadm01 kubelet: W1116 23:12:12.857626     924 cni.go:188] Unable to update cni config: No valid networks found in /etc/cni/net.d
+Nov 16 23:12:12 kubeadm01 kubelet: E1116 23:12:12.857739     924 kubelet.go:2168] Container runtime network not ready: NetworkReady=false reason:NetworkPluginNotReady message:docker: network plugin is not ready: cni config uninitialized
+Nov 16 23:12:13 kubeadm01 containerd: time="2020-11-16T23:12:13.609515241-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:8dc62355a194ae032bc2797ac30a26261849696b3a5e150b7fa3040a47e22755,Pid:20931,ExitStatus:0,ExitedAt:2020-11-17 06:12:13.490699029 +0000 UTC,}"
+Nov 16 23:12:14 kubeadm01 containerd: time="2020-11-16T23:12:14.954023564-07:00" level=info msg="shim containerd-shim started" address="/containerd-shim/moby/6eb216e8c0217dc31e027a95a25041c224125838481f95aec9faad4e01f59f34/shim.sock" debug=false pid=20999
+Nov 16 23:12:15 kubeadm01 containerd: time="2020-11-16T23:12:15.136396139-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:6eb216e8c0217dc31e027a95a25041c224125838481f95aec9faad4e01f59f34,ID:6eb216e8c0217dc31e027a95a25041c224125838481f95aec9faad4e01f59f34,Pid:21016,ExitStatus:0,ExitedAt:2020-11-17 06:12:15.115024084 +0000 UTC,}"
+Nov 16 23:12:15 kubeadm01 containerd: time="2020-11-16T23:12:15.311853273-07:00" level=info msg="shim reaped" id=6eb216e8c0217dc31e027a95a25041c224125838481f95aec9faad4e01f59f34
+Nov 16 23:12:15 kubeadm01 dockerd: time="2020-11-16T23:12:15.322601229-07:00" level=info msg="ignoring event" module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Nov 16 23:12:15 kubeadm01 kubelet: W1116 23:12:15.482732     924 container.go:393] Failed to create summary reader for "/kubepods/podce4a4bb8-289b-11eb-8aa4-080027a26928/6eb216e8c0217dc31e027a95a25041c224125838481f95aec9faad4e01f59f34": none of the resources are being tracked.
+Nov 16 23:12:16 kubeadm01 containerd: time="2020-11-16T23:12:16.633982940-07:00" level=info msg="shim containerd-shim started" address="/containerd-shim/moby/5d702d63364bdb73b94d2a279073f1c024f75d471f22315cbba7e2f0a13cb493/shim.sock" debug=false pid=21104
+Nov 16 23:12:23 kubeadm01 containerd: time="2020-11-16T23:12:23.357359692-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:426123c2f48c34e38021e2ab381d9a985279be05771743727218168793f080b0,Pid:21252,ExitStatus:0,ExitedAt:2020-11-17 06:12:23.284074338 +0000 UTC,}"
+Nov 16 23:12:33 kubeadm01 containerd: time="2020-11-16T23:12:33.294018157-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:686d3e9de5fd15079cdc7d4175cf581d152187bee1c02d29667ff23aff934ff6,Pid:21382,ExitStatus:0,ExitedAt:2020-11-17 06:12:33.276718853 +0000 UTC,}"
+Nov 16 23:12:43 kubeadm01 containerd: time="2020-11-16T23:12:43.291513370-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:bdb7a524ed6c353f98d97cce913e9b32f6312581ba51005b637291c64c914940,Pid:21521,ExitStatus:0,ExitedAt:2020-11-17 06:12:43.273252459 +0000 UTC,}"
+Nov 16 23:12:53 kubeadm01 containerd: time="2020-11-16T23:12:53.298070554-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:26fcb337f6f474f63affd0db6ee5053f34154617043544ded9e2d2fc2b0c7c8b,Pid:21665,ExitStatus:0,ExitedAt:2020-11-17 06:12:53.280447798 +0000 UTC,}"
+Nov 16 23:13:03 kubeadm01 containerd: time="2020-11-16T23:13:03.301153024-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:d0166503fbe882e7a3551ae72b5b36a796a7d66a1bb2ec951cf0e1e3662c3be8,Pid:21810,ExitStatus:0,ExitedAt:2020-11-17 06:13:03.279439363 +0000 UTC,}"
+Nov 16 23:13:04 kubeadm01 kubelet: W1116 23:13:04.025297     924 cni.go:293] CNI failed to retrieve network namespace path: cannot find network namespace for the terminated container "d1d40c45a41321792f22d334dbcba5c1b24d3d3c1bdbf975877affd4abdcd2f6"
+Nov 16 23:13:04 kubeadm01 kubelet: W1116 23:13:04.937035     924 cni.go:293] CNI failed to retrieve network namespace path: cannot find network namespace for the terminated container "d1822e6f13068e0b17e4ae404584d8a24458deb3d3e07e612889d80a22732f00"
+Nov 16 23:13:05 kubeadm01 kubelet: W1116 23:13:05.431683     924 cni.go:293] CNI failed to retrieve network namespace path: cannot find network namespace for the terminated container "dc0f89baa38e057c1d6d5f317d3e1e0799d25feb83e5e691dc3b537ea81f9a4e"
+Nov 16 23:13:05 kubeadm01 kubelet: W1116 23:13:05.537513     924 cni.go:293] CNI failed to retrieve network namespace path: cannot find network namespace for the terminated container "6cde30a6344a024dec1c28a8dc61265fbd6938bd41db5b67922ebd097efcd9fc"
+Nov 16 23:13:05 kubeadm01 kubelet: W1116 23:13:05.654797     924 cni.go:293] CNI failed to retrieve network namespace path: cannot find network namespace for the terminated container "7b0b61a2154fa8ef019267cabd4f5bb4760e6dd107ef9a1c5e4663fec07e1fda"
+Nov 16 23:13:05 kubeadm01 kubelet: W1116 23:13:05.760499     924 cni.go:293] CNI failed to retrieve network namespace path: cannot find network namespace for the terminated container "1908b14fd66f71631b2b7fd39865218075bb8efa994290b4bf16081de855e45f"
+Nov 16 23:13:13 kubeadm01 containerd: time="2020-11-16T23:13:13.387048649-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:fd9ae00658aab9eb2a7e912c0909c4bb6589938f4fb03bb5ec4c2afc58747bed,Pid:22153,ExitStatus:0,ExitedAt:2020-11-17 06:13:13.35836719 +0000 UTC,}"
+Nov 16 23:13:23 kubeadm01 containerd: time="2020-11-16T23:13:23.289987132-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:8b297bbc277b26c805e0159b0cb8ce61cde17b583663c6191ffd63c3c7c0e3ea,Pid:22317,ExitStatus:0,ExitedAt:2020-11-17 06:13:23.271546954 +0000 UTC,}"
+Nov 16 23:13:33 kubeadm01 containerd: time="2020-11-16T23:13:33.307410150-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:be8015cbc15d10581e685099e6a633692aea9e30aeed15f7b472748b21fc7c03,Pid:22446,ExitStatus:0,ExitedAt:2020-11-17 06:13:33.289439466 +0000 UTC,}"
+Nov 16 23:13:43 kubeadm01 containerd: time="2020-11-16T23:13:43.384039088-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:dc0fc9719d75b941ddaff6fdd2932a5ed1975b323971629a91922b5b7284e406,Pid:22574,ExitStatus:0,ExitedAt:2020-11-17 06:13:43.359137223 +0000 UTC,}"
+Nov 16 23:13:53 kubeadm01 containerd: time="2020-11-16T23:13:53.297926754-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:023b45f2a96d59bb0a8329438de6c533cdbb1a3702176e3433bda7e2a0b3157c,Pid:22714,ExitStatus:0,ExitedAt:2020-11-17 06:13:53.278637946 +0000 UTC,}"
+Nov 16 23:14:03 kubeadm01 containerd: time="2020-11-16T23:14:03.292153644-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:abc41632dc1350a5e8759773abc5585b339b9bf1b8b500ede6aab29229f6175f,Pid:22854,ExitStatus:0,ExitedAt:2020-11-17 06:14:03.270596988 +0000 UTC,}"
+Nov 16 23:14:13 kubeadm01 containerd: time="2020-11-16T23:14:13.328751941-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:0eb0ccce801da9b97cf21dd576efabed4d8661c32f83c365b600ab84a89b12a2,Pid:23005,ExitStatus:0,ExitedAt:2020-11-17 06:14:13.270798259 +0000 UTC,}"
+Nov 16 23:14:23 kubeadm01 containerd: time="2020-11-16T23:14:23.301221291-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:8cd708b150e2d5f115079994c7bcd14b62772e7592fdf780a4d267d2db1ddc7d,Pid:23170,ExitStatus:0,ExitedAt:2020-11-17 06:14:23.277015413 +0000 UTC,}"
+Nov 16 23:14:29 kubeadm01 dbus[849]: [system] Activating via systemd: service name='net.reactivated.Fprint' unit='fprintd.service'
+Nov 16 23:14:29 kubeadm01 systemd: Starting Fingerprint Authentication Daemon...
+Nov 16 23:14:29 kubeadm01 kernel: xfs filesystem being remounted at /tmp supports timestamps until 2038 (0x7fffffff)
+Nov 16 23:14:29 kubeadm01 kernel: xfs filesystem being remounted at /var/tmp supports timestamps until 2038 (0x7fffffff)
+Nov 16 23:14:29 kubeadm01 dbus[849]: [system] Successfully activated service 'net.reactivated.Fprint'
+Nov 16 23:14:29 kubeadm01 systemd: Started Fingerprint Authentication Daemon.
+Nov 16 23:14:33 kubeadm01 containerd: time="2020-11-16T23:14:33.286681779-07:00" level=info msg="TaskExit event &TaskExit{ContainerID:039666159b1d05b95fc07caa80dac1a7c7d3c41c195c01bc4f4606bf9864f73e,ID:a2cf6afa1349238d3edbceb082d98d0530de232c1425d6f9964318773c566c66,Pid:23304,ExitStatus:0,ExitedAt:2020-11-17 06:14:33.269178245 +0000 UTC,}"
+
+
+
+I found a fix at : https://github.com/kubernetes/kubernetes/issues/48798
+
+[root@kubeadm01 ~]#
+[root@kubeadm01 ~]# kubectl -n kube-system apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+clusterrole.rbac.authorization.k8s.io/flannel configured
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+clusterrolebinding.rbac.authorization.k8s.io/flannel configured
+serviceaccount/flannel unchanged
+configmap/kube-flannel-cfg configured
+daemonset.extensions/kube-flannel-ds-amd64 created
+daemonset.extensions/kube-flannel-ds-arm64 created
+daemonset.extensions/kube-flannel-ds-arm created
+daemonset.extensions/kube-flannel-ds-ppc64le created
+daemonset.extensions/kube-flannel-ds-s390x created
+[root@kubeadm01 ~]#
+[root@kubeadm01 ~]#
+[root@kubeadm01 ~]# kubectl get nodes
+
+NAME           STATUS   ROLES    AGE   VERSION
+kubeadm01      Ready    master   22d   v1.12.10+1.0.15.el7
+kubeworker01   Ready    <none>   22d   v1.12.10+1.0.15.el7
+kubeworker02   Ready    <none>   22d   v1.12.10+1.0.15.el7

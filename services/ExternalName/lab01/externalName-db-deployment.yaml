@@ -1,0 +1,31 @@
+#DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+  name: mysql-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-deploy
+  template:
+    metadata:
+      labels:
+        app: mysql-deploy
+    spec:
+      containers:
+      - image: mysql
+        name: mysql
+        ports:
+        - containerPort: 3306
+
+# NOTE: I am sure that the deployment of the database will fail because
+#  I did not provide the following ENV parameters
+#  You need to specify one of the following:
+#    - MYSQL_ROOT_PASSWORD
+#    - MYSQL_ALLOW_EMPTY_PASSWORD
+#    - MYSQL_RANDOM_ROOT_PASSWORD
+#  Purpose here is not the database but the ExternalName test.
+#

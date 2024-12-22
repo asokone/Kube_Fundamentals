@@ -1,0 +1,538 @@
+Script started on Wed 24 Mar 2021 10:31:59 PM MST
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl get pods -n kubernetes-dashboard
+NAME                                        READY   STATUS    RESTARTS   AGE
+dashboard-metrics-scraper-95cd9fc94-b4bxj   0/1     Pending   0          128d
+kubernetes-dashboard-74485db5b8-k6cm7       0/1     Pending   0          128d
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ echo WHY THESE PODS ARE in 0/1 READT [K[KY SAT[K[KtA[K[KTATE INSTEAD OF 1/1 READY START[K[KTE
+WHY THESE PODS ARE in 0/1 READY STATE INSTEAD OF 1/1 READY STATE
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard get pod -o wide
+NAME                                        READY   STATUS    RESTARTS   AGE    IP       NODE     NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-b4bxj   0/1     Pending   0          128d   <none>   <none>   <none>
+kubernetes-dashboard-74485db5b8-k6cm7       0/1     Pending   0          128d   <none>   <none>   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard  describe pod dashboard-metrics-scraper-95cd9fc94-b4b xj
+Name:               dashboard-metrics-scraper-95cd9fc94-b4bxj
+Namespace:          kubernetes-dashboard
+Priority:           0
+PriorityClassName:  <none>
+Node:               <none>
+Labels:             k8s-app=dashboard-metrics-scraper
+                    pod-template-hash=95cd9fc94
+Annotations:        seccomp.security.alpha.kubernetes.io/pod: runtime/default
+Status:             Pending
+IP:                 
+Controlled By:      ReplicaSet/dashboard-metrics-scraper-95cd9fc94
+Containers:
+  dashboard-metrics-scraper:
+    Image:        kubernetesui/metrics-scraper:v1.0.4
+    Port:         8000/TCP
+    Host Port:    0/TCP
+    Liveness:     http-get http://:8000/ delay=30s timeout=30s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /tmp from tmp-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kubernetes-dashboard-token-qz5qq (ro)
+Conditions:
+  Type           Status
+  PodScheduled   False 
+Volumes:
+  tmp-volume:
+    Type:    EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:  
+  kubernetes-dashboard-token-qz5qq:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  kubernetes-dashboard-token-qz5qq
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  kubernetes.io/os=linux
+Tolerations:     node-role.kubernetes.io/master:NoSchedule
+                 node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type     Reason            Age                   From               Message
+  ----     ------            ----                  ----               -------
+  Warning  FailedScheduling  12h (x1508 over 28h)  default-scheduler  0/3 nodes are available: 3 node(s) didn't match node selector.
+  Warning  FailedScheduling  28s (x24 over 15m)    default-scheduler  0/3 nodes are available: 3 node(s) didn't match node selector.
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard  describe pod dashboard-metrics-scraper-95cd9fc94-b4bxxj[K[KM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[KM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kkubernetes-dashboard-74485db5b8-k6cm7
+Name:               kubernetes-dashboard-74485db5b8-k6cm7
+Namespace:          kubernetes-dashboard
+Priority:           0
+PriorityClassName:  <none>
+Node:               <none>
+Labels:             k8s-app=kubernetes-dashboard
+                    pod-template-hash=74485db5b8
+Annotations:        <none>
+Status:             Pending
+IP:                 
+Controlled By:      ReplicaSet/kubernetes-dashboard-74485db5b8
+Containers:
+  kubernetes-dashboard:
+    Image:      kubernetesui/dashboard:v2.0.0
+    Port:       8443/TCP
+    Host Port:  0/TCP
+    Args:
+      --auto-generate-certificates
+      --namespace=kubernetes-dashboard
+    Liveness:     http-get https://:8443/ delay=30s timeout=30s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /certs from kubernetes-dashboard-certs (rw)
+      /tmp from tmp-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kubernetes-dashboard-token-qz5qq (ro)
+Conditions:
+  Type           Status
+  PodScheduled   False 
+Volumes:
+  kubernetes-dashboard-certs:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  kubernetes-dashboard-certs
+    Optional:    false
+  tmp-volume:
+    Type:    EmptyDir (a temporary directory that shares a pod's lifetime)
+    Medium:  
+  kubernetes-dashboard-token-qz5qq:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  kubernetes-dashboard-token-qz5qq
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  kubernetes.io/os=linux
+Tolerations:     node-role.kubernetes.io/master:NoSchedule
+                 node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type     Reason            Age                   From               Message
+  ----     ------            ----                  ----               -------
+  Warning  FailedScheduling  12h (x1526 over 28h)  default-scheduler  0/3 nodes are available: 3 node(s) didn't match node selector.
+  Warning  FailedScheduling  67s (x26 over 15m)    default-scheduler  0/3 nodes are available: 3 node(s) didn't match node selector.
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubr[Ke [Kctl get nodes
+NAME           STATUS   ROLES    AGE    VERSION
+kubeadm01      Ready    master   150d   v1.12.10+1.0.15.el7
+kubeworker01   Ready    <none>   150d   v1.12.10+1.0.15.el7
+kubeworker02   Ready    <none>   150d   v1.12.10+1.0.15.el7
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl describe node kubeworker01
+Name:               kubeworker01
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/hostname=kubeworker01
+Annotations:        flannel.alpha.coreos.com/backend-data: {"VtepMAC":"ce:df:0e:ec:73:76"}
+                    flannel.alpha.coreos.com/backend-type: vxlan
+                    flannel.alpha.coreos.com/kube-subnet-manager: true
+                    flannel.alpha.coreos.com/public-ip: 192.168.0.129
+                    kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Sun, 25 Oct 2020 15:02:12 -0700
+Taints:             <none>
+Unschedulable:      false
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  OutOfDisk        False   Wed, 24 Mar 2021 22:35:20 -0700   Tue, 23 Mar 2021 18:28:29 -0700   KubeletHasSufficientDisk     kubelet has sufficient disk space available
+  MemoryPressure   False   Wed, 24 Mar 2021 22:35:20 -0700   Tue, 23 Mar 2021 18:28:29 -0700   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Wed, 24 Mar 2021 22:35:20 -0700   Tue, 23 Mar 2021 18:28:29 -0700   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Wed, 24 Mar 2021 22:35:20 -0700   Sun, 25 Oct 2020 15:02:12 -0700   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Wed, 24 Mar 2021 22:35:20 -0700   Tue, 23 Mar 2021 18:28:29 -0700   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.0.129
+  Hostname:    kubeworker01
+Capacity:
+ cpu:                2
+ ephemeral-storage:  22001156Ki
+ hugepages-2Mi:      0
+ memory:             1739608Ki
+ pods:               110
+Allocatable:
+ cpu:                2
+ ephemeral-storage:  20276265337
+ hugepages-2Mi:      0
+ memory:             1637208Ki
+ pods:               110
+System Info:
+ Machine ID:                 1bcee3d43304a340bd77cb72eb5d5a3a
+ System UUID:                1bcee3d4-3304-a340-bd77-cb72eb5d5a3a
+ Boot ID:                    ed78070c-3692-4d41-912f-c85e24e46906
+ Kernel Version:             5.4.17-2011.7.4.el7uek.x86_64
+ OS Image:                   Oracle Linux Server 7.9
+ Operating System:           linux
+ Architecture:               amd64
+ Container Runtime Version:  docker://19.3.11
+ Kubelet Version:            v1.12.10+1.0.15.el7
+ Kube-Proxy Version:         v1.12.10+1.0.15.el7
+PodCIDR:                     10.244.1.0/24
+Non-terminated Pods:         (3 in total)
+  Namespace                  Name                           CPU Requests  CPU Limits  Memory Requests  Memory Limits
+  ---------                  ----                           ------------  ----------  ---------------  -------------
+  kube-system                kube-flannel-ds-amd64-2m5dx    100m (5%)     100m (5%)   50Mi (3%)        50Mi (3%)
+  kube-system                kube-flannel-ds-dp8wr          100m (5%)     100m (5%)   100Mi (6%)       100Mi (6%)
+  kube-system                kube-proxy-thsxs               0 (0%)        0 (0%)      0 (0%)           0 (0%)
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource  Requests    Limits
+  --------  --------    ------
+  cpu       200m (10%)  200m (10%)
+  memory    150Mi (9%)  150Mi (9%)
+Events:
+  Type    Reason                   Age                From                      Message
+  ----    ------                   ----               ----                      -------
+  Normal  Starting                 19m                kubelet, kubeworker01     Starting kubelet.
+  Normal  NodeAllocatableEnforced  19m                kubelet, kubeworker01     Updated Node Allocatable limit across pods
+  Normal  NodeHasSufficientPID     19m (x5 over 19m)  kubelet, kubeworker01     Node kubeworker01 status is now: NodeHasSufficientPID
+  Normal  NodeHasSufficientDisk    19m (x6 over 19m)  kubelet, kubeworker01     Node kubeworker01 status is now: NodeHasSufficientDisk
+  Normal  NodeHasSufficientMemory  19m (x6 over 19m)  kubelet, kubeworker01     Node kubeworker01 status is now: NodeHasSufficientMemory
+  Normal  NodeHasNoDiskPressure    19m (x6 over 19m)  kubelet, kubeworker01     Node kubeworker01 status is now: NodeHasNoDiskPressure
+  Normal  Starting                 17m                kube-proxy, kubeworker01  Starting kube-proxy.
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ [K[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl describe node kubeworker01[K2
+Name:               kubeworker02
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/hostname=kubeworker02
+Annotations:        flannel.alpha.coreos.com/backend-data: {"VtepMAC":"ea:18:01:02:fe:ca"}
+                    flannel.alpha.coreos.com/backend-type: vxlan
+                    flannel.alpha.coreos.com/kube-subnet-manager: true
+                    flannel.alpha.coreos.com/public-ip: 192.168.0.240
+                    kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Sun, 25 Oct 2020 16:15:09 -0700
+Taints:             <none>
+Unschedulable:      false
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  OutOfDisk        False   Wed, 24 Mar 2021 22:36:11 -0700   Tue, 23 Mar 2021 18:28:29 -0700   KubeletHasSufficientDisk     kubelet has sufficient disk space available
+  MemoryPressure   False   Wed, 24 Mar 2021 22:36:11 -0700   Tue, 23 Mar 2021 18:28:29 -0700   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Wed, 24 Mar 2021 22:36:11 -0700   Tue, 23 Mar 2021 18:28:29 -0700   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Wed, 24 Mar 2021 22:36:11 -0700   Sun, 25 Oct 2020 16:15:09 -0700   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Wed, 24 Mar 2021 22:36:11 -0700   Tue, 23 Mar 2021 18:28:29 -0700   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.0.240
+  Hostname:    kubeworker02
+Capacity:
+ cpu:                2
+ ephemeral-storage:  22001156Ki
+ hugepages-2Mi:      0
+ memory:             1739608Ki
+ pods:               110
+Allocatable:
+ cpu:                2
+ ephemeral-storage:  20276265337
+ hugepages-2Mi:      0
+ memory:             1637208Ki
+ pods:               110
+System Info:
+ Machine ID:                 adc61c016991ca409238874fe852585c
+ System UUID:                adc61c01-6991-ca40-9238-874fe852585c
+ Boot ID:                    d3ca520a-100d-46c9-8309-094df59b1c9d
+ Kernel Version:             5.4.17-2011.7.4.el7uek.x86_64
+ OS Image:                   Oracle Linux Server 7.9
+ Operating System:           linux
+ Architecture:               amd64
+ Container Runtime Version:  docker://19.3.11
+ Kubelet Version:            v1.12.10+1.0.15.el7
+ Kube-Proxy Version:         v1.12.10+1.0.15.el7
+PodCIDR:                     10.244.2.0/24
+Non-terminated Pods:         (3 in total)
+  Namespace                  Name                           CPU Requests  CPU Limits  Memory Requests  Memory Limits
+  ---------                  ----                           ------------  ----------  ---------------  -------------
+  kube-system                kube-flannel-ds-89rbz          100m (5%)     100m (5%)   100Mi (6%)       100Mi (6%)
+  kube-system                kube-flannel-ds-amd64-jffqw    100m (5%)     100m (5%)   50Mi (3%)        50Mi (3%)
+  kube-system                kube-proxy-shnw7               0 (0%)        0 (0%)      0 (0%)           0 (0%)
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource  Requests    Limits
+  --------  --------    ------
+  cpu       200m (10%)  200m (10%)
+  memory    150Mi (9%)  150Mi (9%)
+Events:
+  Type    Reason                   Age                From                      Message
+  ----    ------                   ----               ----                      -------
+  Normal  NodeAllocatableEnforced  21m                kubelet, kubeworker02     Updated Node Allocatable limit across pods
+  Normal  NodeHasSufficientPID     21m (x5 over 21m)  kubelet, kubeworker02     Node kubeworker02 status is now: NodeHasSufficientPID
+  Normal  NodeHasSufficientDisk    21m (x6 over 21m)  kubelet, kubeworker02     Node kubeworker02 status is now: NodeHasSufficientDisk
+  Normal  NodeHasSufficientMemory  21m (x6 over 21m)  kubelet, kubeworker02     Node kubeworker02 status is now: NodeHasSufficientMemory
+  Normal  NodeHasNoDiskPressure    21m (x6 over 21m)  kubelet, kubeworker02     Node kubeworker02 status is now: NodeHasNoDiskPressure
+  Normal  Starting                 18m                kube-proxy, kubeworker02  Starting kube-proxy.
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ =============================[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kecho ------------------------------------------ https://github.com/kubernetes/dashboard/issues/3322
+------------------------------------------ https://github.com/kubernetes/dashboard/issues/3322
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashbo ard.yaml
+error: unable to read URL "https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml", server reported 404 Not Found, status code=404
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta1/aio/deploy/recommended.yaml
+namespace/kubernetes-dashboard unchanged
+serviceaccount/kubernetes-dashboard unchanged
+service/kubernetes-dashboard unchanged
+secret/kubernetes-dashboard-certs unchanged
+secret/kubernetes-dashboard-csrf unchanged
+secret/kubernetes-dashboard-key-holder unchanged
+configmap/kubernetes-dashboard-settings unchanged
+role.rbac.authorization.k8s.io/kubernetes-dashboard unchanged
+clusterrole.rbac.authorization.k8s.io/kubernetes-dashboard unchanged
+rolebinding.rbac.authorization.k8s.io/kubernetes-dashboard unchanged
+clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard unchanged
+deployment.apps/kubernetes-dashboard configured
+service/dashboard-metrics-scraper configured
+deployment.apps/kubernetes-metrics-scraper created
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta1/aio/deploy/recommended.yamlmaster/src/deploy/recommended/kubernetes-dashboaard.yamlM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[20Pecho ------------------------------------------ https://github.com/kubernetes/dashboard/issues/3322
+[KM[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[65Pkubectl describe node kubeworker021[17Pget nodes-n kubernetes-dashboard  describe pod kubernetes-dashboard-74485db5b8-k6cm7dashboard-metrics-scraper-95cd9fc94-b4bxjget pod -o wide[K
+NAME                                          READY   STATUS              RESTARTS   AGE    IP       NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-b4bxj     0/1     Pending             0          128d   <none>   <none>         <none>
+kubernetes-dashboard-74485db5b8-k6cm7         0/1     Pending             0          128d   <none>   <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          0/1     ContainerCreating   0          10s    <none>   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   0/1     ContainerCreating   0          10s    <none>   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE    IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-b4bxj     0/1     Pending   0          128d   <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          16s    10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          16s    10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE    IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-b4bxj     0/1     Pending   0          128d   <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          20s    10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          20s    10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE    IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-b4bxj     0/1     Pending   0          128d   <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          23s    10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          23s    10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE    IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-b4bxj     0/1     Pending   0          128d   <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          30s    10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          30s    10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE    IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-b4bxj     0/1     Pending   0          128d   <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          34s    10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          34s    10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ rm[K[Kkubectl -n kubernetes-dashboard get pod -o wide[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kdelete pod dashboard-metrics-scraper-95cd9fc94-b4bxj -n kubernetes-dashboard
+pod "dashboard-metrics-scraper-95cd9fc94-b4bxj" deleted
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl delete pod dashboard-metrics-scraper-95cd9fc94-b4bxj -n kubernetes-dashboard[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[37P-n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE   IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-b2zjc     0/1     Pending   0          3s    <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          90s   10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          90s   10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard get pod -o wide[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdelete pod dashboard-metrics-scraper-95cd9fc94-b4bxj -n kubernetes-dashboard[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@d[1@a[1@s[1@h[1@b[1@o[1@a[1@r[1@d[1@-[1@m[1@e[1@t[1@r[1@i[1@c[1@s[1@-[1@s[1@c[1@r[1@a[1@p[1@e[1@r[1@-[1@9[1@5[1@c[1@d[1@9[1@f[1@c[1@9[1@4[1@-[1@b[1@2[1@z[1@j[1@c
+pod "dashboard-metrics-scraper-95cd9fc94-b2zjc" deleted
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl delete pod dashboard-metrics-scraper-95cd9fc94-b2zjc -n kubernetes-dashboard[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[37P-n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE    IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-k4rmh     0/1     Pending   0          3s     <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          113s   10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          113s   10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard get pod -o wide[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdelete pod dashboard-metrics-scraper-95cd9fc94-b2zjc -n kubernetes-dashboard[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1P[1@d[1@a[1@s[1@h[1@b[1@o[1@a[1@r[1@d[1@-[1@m[1@e[1@t[1@r[1@i[1@c[1@s[1@-[1@s[1@c[1@r[1@a[1@p[1@e[1@r[1@-[1@9[1@5[1@c[1@d[1@9[1@f[1@c[1@9[1@4[1@-[1@k[1@4[1@r[1@m[1@h
+pod "dashboard-metrics-scraper-95cd9fc94-k4rmh" deleted
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl delete pod dashboard-metrics-scraper-95cd9fc94-k4rmh -n kubernetes-dashboard[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[37P-n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE     IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-j28zv     0/1     Pending   0          4s      <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          2m24s   10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          2m24s   10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl -n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE     IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-j28zv     0/1     Pending   0          4m10s   <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          6m30s   10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          6m30s   10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ curl http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4
+curl: (7) Failed connect to localhost:8001; Connection refused
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ curl http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C0/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C8/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C0/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+404 page not found
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ curl http://localhost:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+<!--
+Copyright 2017 The Kubernetes Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Kubernetes Dashboard</title>
+  <link rel="icon" type="image/png" href="assets/images/kubernetes-logo.png"/>
+  <meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="styles.74371f6fb857b49820d3.css"></head>
+
+<body>
+  <kd-root></kd-root>
+<script src="runtime.008b73624e1b2a41f470.js"></script><script src="polyfills-es5.5a9403b72608aff42d15.js" nomodule=""></script><script src="polyfills.4cb1cc2d75069dcedd9c.js"></script><script src="scripts.b1c7fc483cdf0bfa1025.js"></script><script src="main.111c637f07090984b377.js"></script></body>
+
+</html>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ curl http://localhost:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[1P:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ck:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cu:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cb:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ce:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ca:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cd:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cm:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C0:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C1:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+curl: (7) Failed connect to kubeadm01:8080; Connection refused
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ curl http://kubeadm01:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Clocalhost:8080/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C01/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/4[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[63Pkubectl -n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE     IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-j28zv     0/1     Pending   0          8m14s   <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          10m     10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          10m     10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl get namespaces
+NAME                   STATUS   AGE
+default                Active   150d
+kube-public            Active   150d
+kube-system            Active   150d
+kubernetes-dashboard   Active   128d
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl get namespaces[Kkubectl get deployments -A
+Error: unknown shorthand flag: 'A' in -A
+
+
+Examples:
+  # List all pods in ps output format.
+  kubectl get pods
+  
+  # List all pods in ps output format with more information (such as node name).
+  kubectl get pods -o wide
+  
+  # List a single replication controller with specified NAME in ps output format.
+  kubectl get replicationcontroller web
+  
+  # List deployments in JSON output format, in the "v1" version of the "apps" API group:
+  kubectl get deployments.v1.apps -o json
+  
+  # List a single pod in JSON output format.
+  kubectl get -o json pod web-pod-13je7
+  
+  # List a pod identified by type and name specified in "pod.yaml" in JSON output format.
+  kubectl get -f pod.yaml -o json
+  
+  # Return only the phase value of the specified pod.
+  kubectl get -o template pod/web-pod-13je7 --template={{.status.phase}}
+  
+  # List all replication controllers and services together in ps output format.
+  kubectl get rc,services
+  
+  # List one or more resources by their type and names.
+  kubectl get rc/web service/frontend pods/web-pod-13je7
+
+Options:
+      --all-namespaces=false: If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namespace.
+      --allow-missing-template-keys=true: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
+      --chunk-size=500: Return large lists in chunks rather than all at once. Pass 0 to disable. This flag is beta and may change in the future.
+      --export=false: If true, use 'export' for the resources.  Exported resources are stripped of cluster-specific information.
+      --field-selector='': Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supports a limited number of field queries per type.
+  -f, --filename=[]: Filename, directory, or URL to files identifying the resource to get from a server.
+      --ignore-not-found=false: If the requested object does not exist the command will return exit code 0.
+      --include-uninitialized=false: If true, the kubectl command applies to uninitialized objects. If explicitly set to false, this flag overrides other flags that make the kubectl commands apply to uninitialized objects, e.g., "--all". Objects with empty metadata.initializers are regarded as initialized.
+  -L, --label-columns=[]: Accepts a comma separated list of labels that are going to be presented as columns. Names are case-sensitive. You can also use multiple flag options like -L label1 -L label2...
+      --no-headers=false: When using the default or custom-column output format, don't print headers (default print headers).
+  -o, --output='': Output format. One of: json|yaml|wide|name|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=... See custom columns [http://kubernetes.io/docs/user-guide/kubectl-overview/#custom-columns], golang template [http://golang.org/pkg/text/template/#pkg-overview] and jsonpath template [http://kubernetes.io/docs/user-guide/jsonpath].
+      --raw='': Raw URI to request from the server.  Uses the transport specified by the kubeconfig file.
+  -R, --recursive=false: Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.
+  -l, --selector='': Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l key1=value1,key2=value2)
+      --server-print=true: If true, have the server return the appropriate table output. Supports extension APIs and CRDs.
+      --show-kind=false: If present, list the resource type for the requested object(s).
+      --show-labels=false: When printing, show all labels as the last column (default hide labels column)
+      --sort-by='': If non-empty, sort list types using this field specification.  The field specification is expressed as a JSONPath expression (e.g. '{.metadata.name}'). The field in the API resource specified by this JSONPath expression must be an integer or a string.
+      --template='': Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
+  -w, --watch=false: After listing/getting the requested object, watch for changes. Uninitialized objects are excluded if no object name is provided.
+      --watch-only=false: Watch for changes to the requested object(s), without listing/getting first.
+
+Usage:
+  kubectl get [(-o|--output=)json|yaml|wide|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=...] (TYPE[.VERSION][.GROUP] [NAME | -l label] | TYPE[.VERSION][.GROUP]/NAME ...) [flags] [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+
+unknown shorthand flag: 'A' in -A
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl get deployments -A[K[K
+No resources found.
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl get deployments -A[4Pnamespaces
+NAME                   STATUS   AGE
+default                Active   150d
+kube-public            Active   150d
+kube-system            Active   150d
+kubernetes-dashboard   Active   128d
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl describe namespace kubernetes-dashboard
+Name:         kubernetes-dashboard
+Labels:       <none>
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"v1","kind":"Namespace","metadata":{"annotations":{},"name":"kubernetes-dashboard"}}
+Status:       Active
+
+No resource quota.
+
+No resource limits.
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl describe namespace kubernetes-dashboard[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[25Pget namespacesdeployments -A[4Pnamespaces-n kubernetes-dashboard get pod -o wide
+NAME                                          READY   STATUS    RESTARTS   AGE   IP            NODE           NOMINATED NODE
+dashboard-metrics-scraper-95cd9fc94-j28zv     0/1     Pending   0          15m   <none>        <none>         <none>
+kubernetes-dashboard-f5cfbffd7-fs7s9          1/1     Running   0          17m   10.244.2.93   kubeworker02   <none>
+kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          17m   10.244.1.74   kubeworker01   <none>
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ kubectl get pods --all-namespaces | grep "dashboard"      
+kube-system            kubernetes-[01;31m[Kdashboard[m[K-d9ccf957f-rmpsr          1/1     Running   17         77d
+kubernetes-[01;31m[Kdashboard[m[K   [01;31m[Kdashboard[m[K-metrics-scraper-95cd9fc94-j28zv     0/1     Pending   0          17m
+kubernetes-[01;31m[Kdashboard[m[K   kubernetes-[01;31m[Kdashboard[m[K-f5cfbffd7-fs7s9          1/1     Running   0          20m
+kubernetes-[01;31m[Kdashboard[m[K   kubernetes-metrics-scraper-65cfd488b8-svkb4   1/1     Running   0          20m
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ [K[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/lab01\[asokone@kubeadm01 lab01]$ exit
+exit
+
+Script done on Wed 24 Mar 2021 11:35:16 PM MST

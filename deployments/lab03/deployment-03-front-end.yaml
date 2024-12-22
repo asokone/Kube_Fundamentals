@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-03-rss-site
+  labels:
+    app: deployment-03-web
+spec:
+  selector:
+    matchLabels:
+      app: deployment-03-web
+  template:
+    metadata:
+      labels:
+        app: deployment-03-web
+    spec:
+      containers:
+        - name: deployment-03-front-end-container
+          image: nginx
+          ports:
+            - containerPort: 80
+        - name: deployment-03-rss-reader-container
+          image: nickchase/rss-php-nginx:v1
+          ports:
+            - containerPort: 88

@@ -1,0 +1,129 @@
+ 1003  kubectl get nodes -o wide
+ 1004  echo ============== Let us create an nginx deployment
+ 1005  kubectl run nginx --image nginx
+ 1006  kubectl get all
+ 1007  kubectl get all | grep "pod/nginx"
+ 1008  echo ============== In order to access this deployment we need to expose it as a SERVICE of TYPE  LoadBalancer
+ 1009  kubectl expose deploy nginx --port 80 --type LoadBalancer; watch kubectl get all
+ 1010  kubectl get service
+ 1011  echo ============ You can our SERVICE nginx TYPE LoadBalancer has as EXTERNAL-IP <pending>. It will stay that way forever unless we deploy a LOADBALANCING SOLUTION for this service to be provided an EXTERNAL-IP. We can use MetalLB for that. For that we are to delete the service we just create first
+ 1012  echo "============ You can our SERVICE nginx TYPE LoadBalancer has as EXTERNAL-IP <pending>. It will stay that way forever unless we deploy a LOADBALANCING SOLUTION for this service to be provided an EXTERNAL-IP. We can use MetalLB for that. For that we are to delete the service we just create first"
+ 1013  kubectl delete svc nginx
+ 1014  kubectl get service
+ 1015  echo "======================= Next is to google metalLB"
+ 1016  echo ==================== I found this one: https://metallb.universe.tf/installation/
+ 1017  echo ========== Installation By Manifest
+ 1018  kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/namespace.yaml
+ 1019  kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+ 1020  # On first install only
+ 1021  kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+ 1022  kubectl get ns
+ 1023  kubectl get all -n metallb-system
+ 1024  echo ================ deployment.apps/controller takes care of the IP addresses assignment, whenever you create a SERVICE of TYPE LoadBalancer
+ 1025  echo =============== daemonset.apps/speaker makes sure you reach the SERVICE through the LoadBalancer IP
+ 1026  echo =============== You can see that the speaker is a daemonset and the controller is a deployment.
+ 1027  kubectl get all -n metallb-system
+ 1028  kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/namespace.yaml
+ 1029  kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+ 1030  kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+ 1031  kubectl get namespace
+ 1032  curl -LO https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+ 1033  curl -LO https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/namespace.yaml
+ 1034  ls -al
+ 1035  more namespace.yaml
+ 1036  kubectl delete -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+ 1037  ls
+ 1038  kubectl apply -f namespace.yaml
+ 1039  kubectl apply -f metallb.yaml
+ 1040  kubectl get all -n metallb-system
+ 1041  ls
+ 1042  kubectl get ns
+ 1043  ls
+ 1044  kubectl delete -f metallb.yaml
+ 1045  kubectl delete -f namespace.yaml
+ 1046  curl -LO https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml
+ 1047  echo https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml
+ 1048  ls
+ 1049  mv metallb.yaml metallb.v0.7.3.yaml
+ 1050  curl -LO https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
+ 1051  mv metallb.yaml metallb.v0.9.6.yaml
+ 1052  kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.7.3/manifests/metallb.yaml
+ 1053  kubectl get all -n metallb-system
+ 1054  echo ------------- Now that I have used the right version v0.7.3 with it's pods all in running state. Let us proceed
+
+
+"
+'
+ 1055  echo https://www.youtube.com/watch?v=UvwtALIb2U8&list=TLPQMTQwNDIwMjFH6zugqbtgyQ&index=3
+ 1056  echo "https://www.youtube.com/watch?v=UvwtALIb2U8&list=TLPQMTQwNDIwMjFH6zugqbtgyQ&index=3
+
+"
+ 1057  echo "https://www.youtube.com/watch?v=xYiYIjlAgHY&list=TLPQMTQwNDIwMjGVVbj2-4StTA&index=1"
+ 1058  echo "https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/"
+ 1059  echo "https://kubernetes.io/docs/concepts/services-networking/service/#external-ips"
+ 1060  echo "https://github.com/kubernetes/website/issues/27543"
+ 1061  echo "https://metallb.universe.tf/installation/"
+ 1062  kubectl get ns
+ 1063  kubectl get all -n metallb-system
+ 1064  echo ============= Now that we have found the right version for this metalLB that works with its pods in RUNNING status instead of Pending, let do the CONFIGURATION needed for this to work.
+ 1065  echo -===================== We are to use the configmap on their web site https://metallb.universe.tf/configuration/
+ 1066  echo "
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses: 
+      - 192.168.1.240-192.168.1.250" > configmap.yaml
+ 1067  cat configmap.yaml 
+ 1068  kubectl get nodes -o wide
+ 1069  echo ================= We can see that our nodes INTERNAL-IP are in the range 192.168.0.129-192.168.0.240
+ 1070  echo ============ We need change this to reflect it in our configmap.yaml file
+ 1071  sed -e 's/192.168.1.240-192.168.1.250/192.168.0.220-192.168.0.250/g' -i configmap.yaml
+ 1072  cat configmap.yaml
+ 1073  echo ================ Doing it we are reserving the range 192.168.0.220-192.168.0.250 for our loadbalancer
+ 1074  echo ================== Let us apply the configmap.yaml file just created
+ 1075  kubectl apply -f configmap.yaml 
+ 1076  echo ============= Successful creation of configmap in metallb-system namespace right let us take a look
+ 1077  kubectl describe configmap config -n metallb-system
+ 1078  echo ============= Now we are good to go
+ 1079  echo ============ LET us and EXPOSE our service this time
+ 1080  kubectl expose nginx --port 80 --type LoadBalancer
+ 1081  history  | grep expose
+ 1082  kubectl expose deploy nginx --port 80 --type LoadBalancer; watch kubectl get all
+ 1083  kubectl get services -n metallb-system
+ 1084  kubectl get services 
+ 1085  echo ================ we can see that our NGINX LOADBALANCER is created with an EXTERNAL-IP 192.168.0.220
+ 1086  echo ======================= 192.168.0.220 is the first address of the range we defined on the configmap.yaml file right
+ 1087  echo ============ NOW the big test come. Accessing the IP address
+ 1088  curl 192.168.0.220:80
+ 1089  echo ==================== YAHOOOOOOOOO! it's working
+
+
+"
+'
+ 1090  echo ==================== Try it via a  browser accessible to this IP 192.168.0.220
+ 1091  echo ================ I tried http://192.168.0.220:80/ and it worked
+ 1092  kubectl get all
+ 1093  echo ================= we can create another service nginx2
+ 1094  kubectl run nginx2 --image nginx
+ 1095  kubectl get all
+ 1096  kubectl get all | nginx2
+ 1097  kubectl get all | grep nginx2
+ 1098  echo ================ We see our nginx2 pod deployment replicaset
+ 1099  echo =================== Now let us expose it
+ 1100  kubectl expose deploy nginx2 --port 80 --type LoadBalancer
+ 1101  kubectl get all | grep nginx2
+ 1102  kubectl get all 
+ 1103  kubectl get all | grep nginx2  | grep LoadBalancer
+ 1104  echo ======================= Let us access it
+ 1105  curl 192.168.0.221:80
+ 1106  echo ========================== YAHOOOOOOO  IT WORKS
+ 1107  echo ============== Via a browser
+ 1108  echo ================== http://192.168.0.221:80/  Yes it works
+ 1109  echo =============== That's the way to use the MetalLB Load Balancer in you K8s environment

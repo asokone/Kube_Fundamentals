@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod-01
+  labels:
+    role: mypod-01-role
+spec:
+  containers:
+    - name: mypod-01-web
+      image: httpd:2.4
+      ports:
+        - name: mypod-01-web
+          containerPort: 80
+          protocol: TCP

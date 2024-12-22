@@ -1,0 +1,12 @@
+# NGINX DEPLOYMENT SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-deploy-svc
+spec:
+  selector:
+    app: nginx-deploy
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

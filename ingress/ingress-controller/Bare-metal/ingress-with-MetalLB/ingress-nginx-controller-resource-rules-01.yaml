@@ -1,0 +1,21 @@
+#apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-nginx-resource-01
+  namespace: ingress-nginx
+spec:
+  rules:
+  - host: nginx.example.com
+# Define here a host base routing
+# any request to access nginx.example.com
+# will be routed to the service: main-nginx-deploy-01-nginx
+# below.
+    http:
+      paths:
+        - backend:
+            serviceName: main-deployment-01-nginx
+            servicePort: 80 
+# This port 80 is the one we used during 
+# the kubectl expose command
+

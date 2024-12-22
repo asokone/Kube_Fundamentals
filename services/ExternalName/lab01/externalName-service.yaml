@@ -1,0 +1,20 @@
+# EXTERNAL SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: externalname-svc
+# this service is to serve the nginx 
+# deployment in externalName-deployment.yaml
+# to access an external database
+# hosted in the host: my-db.example.com
+  namespace: production
+spec:
+  selector:
+    app: nginx-deploy
+  type: ExternalName
+  externalName: my-db.example.com
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+

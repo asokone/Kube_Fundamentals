@@ -1,0 +1,4 @@
+https://github.com/coreos/flannel/blob/master/README.md
+Kubernetes YAML validator: http://www.yamllint.com/
+YAML Reference https://yaml.org/spec/1.2/spec.html
+https://acloud.guru/forums/Kubernetes-Quick-Start/discussion/-MM8Haw3dr49QRyHyYFA/

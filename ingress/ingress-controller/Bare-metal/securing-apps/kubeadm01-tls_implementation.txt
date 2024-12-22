@@ -1,0 +1,129 @@
+Script started on Thu 22 Apr 2021 02:52:36 AM MST
+
+
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ echo https://medium.com/avmconsulting-blog/how-to- secure-applications-on-kubernetes-ssl-tls-certificates-8f7f5751d788
+
+https://medium.com/avmconsulting-blog/how-to-secure-applications-on-kubernetes-ssl-tls-certificates-8f7f5751d788
+
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ which openssl
+/usr/bin/openssl
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ /usr/bin/openssl genrsa -out ca.key 2048
+Generating RSA private key, 2048 bit long modulus
+..............................+++
+...............+++
+e is 65537 (0x10001)
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ ls -al ca.key 
+-rw-rw-r-- 1 asokone asokone 1675 Apr 22 02:54 ca.key
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ openssl req -x509 \
+>   -new -nodes  \
+>   -days 365 \
+>   -key ca.key \
+>   -out ca.crt \
+>   -subj "/CN=example.com"
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ ls -al[K[Kltrh
+total 68K
+-rw-rw-r-- 1 asokone asokone  458 Apr 21 18:09 configmap.yaml
+-rw-rw-r-- 1 asokone asokone  18K Apr 21 18:09 deploy_nginx_ingress_controller_namespace_ingress-nginx.yaml
+-rw-rw-r-- 1 asokone asokone  423 Apr 21 18:09 main-nginx-deployment-01.yaml
+-rw-rw-r-- 1 asokone asokone 4.5K Apr 21 18:09 metallb.v0.7.3.yaml
+-rw-rw-r-- 1 asokone asokone  612 Apr 21 18:25 ingress-nginx-controller-resource-rules-01.yaml
+-rwxr-xr-x 1 asokone asokone 2.8K Apr 22 02:33 [0m[01;32mrunAll.sh[0m
+-rwxr-xr-x 1 asokone asokone 3.0K Apr 22 02:41 [01;32mdeleteAll.sh[0m
+-rw-rw-r-- 1 asokone asokone  204 Apr 22 02:45 tls-secret-config.yaml
+-rw-rw-r-- 1 asokone asokone 1.7K Apr 22 02:54 ca.key
+-rw-rw-r-- 1 asokone asokone 4.7K Apr 22 02:54 kubeadm01-tls_implementation.txt
+-rw-rw-r-- 1 asokone asokone 1.1K Apr 22 02:55 ca.crt
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ kubectl create secret tls nginx-example-com-secret-tls \
+> --key ca.key \
+> --cert ca.crt
+
+secret/nginx-example-com-secret-tls created
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ ls -ltrh
+total 80K
+-rw-rw-r-- 1 asokone asokone  458 Apr 21 18:09 configmap.yaml
+-rw-rw-r-- 1 asokone asokone  18K Apr 21 18:09 deploy_nginx_ingress_controller_namespace_ingress-nginx.yaml
+-rw-rw-r-- 1 asokone asokone  423 Apr 21 18:09 main-nginx-deployment-01.yaml
+-rw-rw-r-- 1 asokone asokone 4.5K Apr 21 18:09 metallb.v0.7.3.yaml
+-rw-rw-r-- 1 asokone asokone  612 Apr 21 18:25 ingress-nginx-controller-resource-rules-01.yaml
+-rwxr-xr-x 1 asokone asokone 2.8K Apr 22 02:33 [0m[01;32mrunAll.sh[0m
+-rwxr-xr-x 1 asokone asokone 3.0K Apr 22 02:41 [01;32mdeleteAll.sh[0m
+-rw-rw-r-- 1 asokone asokone  204 Apr 22 02:45 tls-secret-config.yaml
+-rw-rw-r-- 1 asokone asokone 1.7K Apr 22 02:54 ca.key
+-rw-rw-r-- 1 asokone asokone 1.1K Apr 22 02:55 ca.crt
+-rw-rw-r-- 1 asokone asokone  17K Apr 22 02:57 kubeadm01-tls_implementation.txt
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ ls -al
+total 84
+drwxrwxr-x 2 asokone asokone  4096 Apr 22 02:55 [0m[01;34m.[0m
+drwxrwxr-x 5 asokone asokone    75 Apr 21 16:32 [01;34m..[0m
+-rw-rw-r-- 1 asokone asokone  1099 Apr 22 02:55 ca.crt
+-rw-rw-r-- 1 asokone asokone  1675 Apr 22 02:54 ca.key
+-rw-rw-r-- 1 asokone asokone   458 Apr 21 18:09 configmap.yaml
+-rwxr-xr-x 1 asokone asokone  3032 Apr 22 02:41 [01;32mdeleteAll.sh[0m
+-rw-rw-r-- 1 asokone asokone 18030 Apr 21 18:09 deploy_nginx_ingress_controller_namespace_ingress-nginx.yaml
+-rw-rw-r-- 1 asokone asokone   612 Apr 21 18:25 ingress-nginx-controller-resource-rules-01.yaml
+-rw-rw-r-- 1 asokone asokone 17063 Apr 22 02:57 kubeadm01-tls_implementation.txt
+-rw-rw-r-- 1 asokone asokone   423 Apr 21 18:09 main-nginx-deployment-01.yaml
+-rw-rw-r-- 1 asokone asokone  4554 Apr 21 18:09 metallb.v0.7.3.yaml
+-rwxr-xr-x 1 asokone asokone  2811 Apr 22 02:33 [01;32mrunAll.sh[0m
+-rw-rw-r-- 1 asokone asokone   204 Apr 22 02:45 tls-secret-config.yaml
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ kubectl get secrets/nginx-example-com-secret-tls
+NAME                           TYPE                DATA   AGE
+nginx-example-com-secret-tls   kubernetes.io/tls   2      97s
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ kubectl describe secrets/nginx-example-com-secret- tls
+Name:         nginx-example-com-secret-tls
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Type:  kubernetes.io/tls
+
+Data
+====
+tls.crt:  1099 bytes
+tls.key:  1675 bytes
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ grep tls runAll.sh 
+echo "--- Apply [01;31m[Ktls[m[K-secret-config.yaml"
+kubectl apply -f [01;31m[Ktls[m[K-secret-config.yaml
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ vi runAll.sh
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ grep tls runAll.sh 
+#echo "--- Apply [01;31m[Ktls[m[K-secret-config.yaml"
+#kubectl apply -f [01;31m[Ktls[m[K-secret-config.yaml
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ 
+kasokone@kubeadm01:~/kubernetes/Kube_Fundamentals/ingress/ingress-controller/Bare-metal/securing-apps\[asokone@kubeadm01 securing-apps]$ exit
+exit
+
+Script done on Thu 22 Apr 2021 03:01:26 AM MST

@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: main-deployment-01-nginx
+  name: main-deployment-01-nginx
+  namespace: ingress-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main-deployment-01-nginx
+  template:
+    metadata:
+      labels:
+        app: main-deployment-01-nginx
+    spec:
+      containers:
+      - name: main-deployment-01-nginx-container
+        image: nginx:1.14.2
