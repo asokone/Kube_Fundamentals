@@ -38,3 +38,18 @@ spec:
               name: deployment-03-mongodb-configmap
               key: database_url
 
+---
+# SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-03-mongoexpress
+spec:
+  selector:
+    app: deployment-03-mongoexpress-app
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+      nodePort: 30000
