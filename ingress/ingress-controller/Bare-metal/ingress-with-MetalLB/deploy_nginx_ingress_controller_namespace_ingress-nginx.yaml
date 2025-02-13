@@ -330,7 +330,8 @@ spec:
       dnsPolicy: ClusterFirst
       containers:
         - name: controller
-          image: us.gcr.io/k8s-artifacts-prod/ingress-nginx/controller:v0.34.0@sha256:56633bd00dab33d92ba14c6e709126a762d54a75a6e72437adefeaaca0abb069
+#          image: us.gcr.io/k8s-artifacts-prod/ingress-nginx/controller:v0.34.0@sha256:56633bd00dab33d92ba14c6e709126a762d54a75a6e72437adefeaaca0abb069
+          image: asokone/k8s-artifacts-prod-ingress-nginx-controller:v0.34.0
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -526,7 +527,8 @@ spec:
     spec:
       containers:
         - name: create
-          image: docker.io/jettech/kube-webhook-certgen:v1.2.2
+#          image: docker.io/jettech/kube-webhook-certgen:v1.2.2
+          image: asokone/jettech-kube-webhook-certgen:v1.2.2
           imagePullPolicy: IfNotPresent
           args:
             - create
@@ -569,7 +571,8 @@ spec:
     spec:
       containers:
         - name: patch
-          image: docker.io/jettech/kube-webhook-certgen:v1.2.2
+#          image: docker.io/jettech/kube-webhook-certgen:v1.2.2
+          image: asokone/jettech-kube-webhook-certgen:v1.2.2
           imagePullPolicy: IfNotPresent
           args:
             - patch
