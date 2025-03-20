@@ -25,8 +25,7 @@ sleep 10
 echo ================ "kubectl apply -f metallb-native-killercoda.yaml ;  echo; echo ----- ; sleep 10;  kubectl get pods -n metallb-system"
 kubectl apply -f metallb-native-killercoda.yaml ;  echo; echo ----- ; sleep 10;  kubectl get pods -n metallb-system
 
-sleep 10
-sleep 10
+sleep 60
 echo ================ kubectl get pods -n metallb-system
 kubectl get pods -n metallb-system
 
@@ -42,7 +41,7 @@ sleep 10
 echo ================ kubectl apply -f configmap-killercoda.yaml
 kubectl apply -f configmap-killercoda.yaml
 
-sleep 10
+sleep 30
 echo ================ kubectl get ipaddresspool -n metallb-system
 kubectl get ipaddresspool -n metallb-system
 
@@ -64,8 +63,8 @@ sleep 10
 echo ================ kubectl apply -f ingress-nginx-controller-service-killercoda.yaml
 kubectl apply -f ingress-nginx-controller-service-killercoda.yaml
 
+sleep 30
 echo ================ kubectl get svc -n ingress-nginx
-sleep 10
 kubectl get svc -n ingress-nginx
 
 echo ================ grep namespace: deploy-ingress-nginx-controller-killercoda.yaml
@@ -75,7 +74,7 @@ sleep 10
 echo ================ kubectl apply -f deploy-ingress-nginx-controller-killercoda.yaml 
 kubectl apply -f deploy-ingress-nginx-controller-killercoda.yaml 
 
-sleep 10
+sleep 30
 echo ================ kubectl get all -n ingress-nginx 
 kubectl get all -n ingress-nginx 
 
@@ -87,7 +86,7 @@ sleep 10
 echo ================ kubectl apply -f main-nginx-deployment-01-killercoda.yaml
 kubectl apply -f main-nginx-deployment-01-killercoda.yaml
 
-sleep 10
+sleep 30
 echo ================ kubectl get deployment -n ingress-nginx 
 kubectl get deployment -n ingress-nginx 
 
@@ -99,9 +98,9 @@ sleep 10
 echo ================ kubectl apply -f ingress-nginx-controller-resource-rules-01-NGINX-deploy-killercoda.yaml
 kubectl apply -f ingress-nginx-controller-resource-rules-01-NGINX-deploy-killercoda.yaml
 
-sleep 10
+sleep 60
 echo ================ "sleep 60; kubectl get ingress -n ingress-nginx"
-sleep 60; kubectl get ingress -n ingress-nginx
+kubectl get ingress -n ingress-nginx
 
 sleep 10
 echo ================ kubectl describe ingress ingress-nginx-resource-01 -n ingress-nginx
@@ -115,7 +114,7 @@ sleep 10
 echo ================ kubectl apply -f apache-httpd-deployment-killercoda.yaml
 kubectl apply -f apache-httpd-deployment-killercoda.yaml
 
-sleep 10
+sleep 30
 echo ================ kubectl apply -f apache-httpd-service-killercoda.yaml
 kubectl apply -f apache-httpd-service-killercoda.yaml
 
@@ -123,7 +122,7 @@ sleep 10
 echo ================ kubectl apply -f ingress-nginx-controller-resource-rules-01-HTTPD-deploy-killercoda.yaml
 kubectl apply -f ingress-nginx-controller-resource-rules-01-HTTPD-deploy-killercoda.yaml
 
-sleep 10
+sleep 30
 echo ================ kubectl get ingress -n ingress-nginx
 kubectl get ingress -n ingress-nginx
 
