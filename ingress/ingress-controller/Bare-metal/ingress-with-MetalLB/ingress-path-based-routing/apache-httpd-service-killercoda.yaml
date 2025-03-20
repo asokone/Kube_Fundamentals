@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: main-deployment-01-httpd
+  namespace: ingress-nginx
+spec:
+  selector:
+    app: main-deployment-01-httpd
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+

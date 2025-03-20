@@ -1,0 +1,22 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx-resource-02
+  namespace: ingress-nginx
+spec:
+  ingressClassName: nginx  # Explicitly set the Ingress class
+  rules:
+  - host: main.example.com
+    http:
+      paths:
+      - path: /httpd
+        pathType: Prefix
+        backend:
+          service:
+             name: main-deployment-01-httpd
+                 # This <kind: Ingress> controller resource rules will  serve 
+                 #  the service named: [ main-deployment-01-httpd] of 
+                 #  the Deployment of our nginx application coming up
+             port:
+               number: 80

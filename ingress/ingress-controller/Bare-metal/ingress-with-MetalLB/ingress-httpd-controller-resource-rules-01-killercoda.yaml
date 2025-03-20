@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apache-httpd-ingress
+  namespace: ingress-nginx
+spec:
+  ingressClassName: nginx  # Ensure it's using the correct ingress class
+  rules:
+    - host: httpd.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-httpd-service
+                 # This <kind: Ingress> controller resource rules will  serve 
+                 # the service named: [apache-httpd-service ] of 
+                 # the Deployment of our httpd application above
+                port:
+                  number: 80

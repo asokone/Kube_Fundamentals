@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-httpd-deployment
+  namespace: ingress-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache-httpd
+  template:
+    metadata:
+      labels:
+        app: apache-httpd
+    spec:
+      containers:
+        - name: apache-httpd
+          image: httpd:latest  # Official Apache HTTPD image
+          ports:
+            - containerPort: 80
