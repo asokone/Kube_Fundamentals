@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx-resource-01
+  namespace: ingress-nginx
+spec:
+  ingressClassName: nginx  # Explicitly set the Ingress class
+  tls:
+  - hosts:
+    - main.example.com
+    secretName: main-example-com-secret-tls
+  rules:
+  - host: main.example.com
+    http:
+      paths:
+      - path: /nginx
+        pathType: Prefix
+        backend:
+          service:
+            name: main-deployment-01-nginx
+                 # This <kind: Ingress> controller resource rules will  serve 
+                 # the service named: [ main-deployment-01-nginx ] of 
+                 # the Deployment of our nginx application coming up
+            port:
+              number: 80
+                 
