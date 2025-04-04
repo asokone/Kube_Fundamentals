@@ -175,7 +175,7 @@ sleep 30
 echo ================ kubectl apply -f tls-ingress-nginx-controller-resource-rules-01-HTTPD-deploy-killercoda.yaml
 kubectl apply -f tls-ingress-nginx-controller-resource-rules-01-HTTPD-deploy-killercoda.yaml
 
-sleep 30
+sleep 60
 echo ================ kubectl get ingress -n ingress-nginx
 kubectl get ingress -n ingress-nginx
 
@@ -194,8 +194,13 @@ echo "172.30.2.101 main.example.com" | sudo tee -a /etc/hosts
 tail -1 /etc/hosts
 
 
+echo
+echo
 echo =================== NOW DO THE REST ========================
 echo
-echo curl -v http://main.example.com:80/nginx/    
+echo curl -k https://main.example.com:443/nginx/    
 echo
-echo curl -v http://main.example.com:80/httpd/    
+echo curl -k https://main.example.com:443/httpd/    
+echo 
+echo
+echo
