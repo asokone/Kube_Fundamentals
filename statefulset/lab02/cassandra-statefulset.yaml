@@ -9,7 +9,7 @@ metadata:
 spec:
   storageClassName: manual
   capacity:
-    storage: 10Gi
+    storage: 5Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
@@ -55,7 +55,8 @@ spec:
       terminationGracePeriodSeconds: 1800
       containers:
       - name: cassandra
-        image: gcr.io/google-samples/cassandra:v13
+#        image: gcr.io/google-samples/cassandra:v13
+        image: cassandra:4.0
         imagePullPolicy: Always
         ports:
         - containerPort: 7000
