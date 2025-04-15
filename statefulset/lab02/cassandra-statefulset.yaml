@@ -39,7 +39,7 @@ metadata:
     app: cassandra
 spec:
   serviceName: cassandra
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: cassandra
@@ -55,8 +55,8 @@ spec:
       terminationGracePeriodSeconds: 1800
       containers:
       - name: cassandra
-#        image: gcr.io/google-samples/cassandra:v13
-        image: cassandra:4.0
+        image: gcr.io/google-samples/cassandra:v13
+#        image: cassandra:4.0
         imagePullPolicy: Always
         ports:
         - containerPort: 7000
