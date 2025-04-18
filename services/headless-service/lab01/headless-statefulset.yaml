@@ -1,0 +1,24 @@
+#DEPLOYMENT
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: nginx
+  name: nginx-deploy
+spec:
+  serviceName: headless-service # <-- Add this line! For the DNS nslookup to work
+# Without serviceName, StatefulSet Pods do not get stable DNS names.
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx-deploy
+  template:
+    metadata:
+      labels:
+        app: nginx-deploy
+    spec:
+      containers:
+      - image: nginx:1.14.2
+        name: nginx
+        ports:
+        - containerPort: 80
