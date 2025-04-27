@@ -1,0 +1,23 @@
+#DEPLOYMENT
+# https://blog.knoldus.com/what-is-apiversion-in-kubernetes-part-1/
+#
+#apiVersion: extensions/v1beta1
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-rtmp
+spec:
+  selector:
+    matchLabels:
+      app: nginx-rtmp-deploy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-rtmp-deploy
+    spec:
+      containers:
+      - name: nginx-rtmp-container
+        image: tiangolo/nginx-rtmp
+        ports:
+        - containerPort: 1935
